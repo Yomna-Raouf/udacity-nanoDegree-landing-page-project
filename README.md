@@ -2,7 +2,7 @@
 a multi-section landing page that is built using `HTML`, `CSS`, and `JavaScript`.
 This project is built for [Udacity web development professional track](https://egfwd.com/web/) as a task.
 
-![Landing Page video](https://github.com/Yomna-Raouf/udacity-nanoDegree-landing-page-project/blob/main/landing-page.webm)
+![Landing Page video](landing-page.webm)
 
 ## Architecture
     css
