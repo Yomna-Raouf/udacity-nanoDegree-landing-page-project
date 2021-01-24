@@ -21,6 +21,8 @@
 const navBar = document.querySelector(".page__header");
 const sections = document.querySelectorAll("section");
 const navList = document.querySelector("#navbar__list");
+const collapsibles = document.querySelectorAll(".collapsible");
+console.log(collapsibles);
 
 /**
  * End Global Variables
@@ -119,8 +121,8 @@ const ScrollToAnchor = () => {
 const hideNavBar = (navBar) => {
   let isScrolling = false;
   // checking if the user is scrolling
-  window.addEventListener("scroll", () => isScrolling = true);
-  
+  window.addEventListener("scroll", () => (isScrolling = true));
+
   setInterval(() => {
     // make the navbar visible if ths user is scrolling or if the user is at the top of the page
     if (isScrolling || window.scrollY === 0) {
@@ -130,6 +132,23 @@ const hideNavBar = (navBar) => {
       navBar.style.top = "-52px";
     }
   }, 250);
+};
+
+// Collapsible sections - collapse when clicking the section heading tah
+const collapseSection = (collapsibles) => {
+  collapsibles.forEach((collapsible) => {
+    collapsible.addEventListener("click", (e) => {
+      let collapsibleHeading = e.target;
+      let content = e.target.nextElementSibling;
+      if (getComputedStyle(content).opacity === "1") {
+        collapsibleHeading.style.backgroundColor = "#cccc114d";
+        content.style.opacity = 0;
+      } else {
+        content.style.opacity = 1;
+        collapsibleHeading.style.backgroundColor = "transparent";
+      }
+    });
+  });
 };
 
 /**
@@ -149,3 +168,6 @@ setObserverForSections(sections);
 
 // Hide navBar when the user stops scrolling
 hideNavBar(navBar);
+
+// collapse sections on clicking their headings 
+collapseSection(collapsibles);
