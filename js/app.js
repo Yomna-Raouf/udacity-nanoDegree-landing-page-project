@@ -19,8 +19,8 @@
 */
 
 const sections = document.querySelectorAll("section");
-const navList = document.querySelector("#navbar__list");
-const navLinks = document.querySelectorAll(".menu__link");
+const navList  = document.querySelector("#navbar__list");
+
 
 
 
@@ -58,13 +58,17 @@ sections.forEach((section) => {
 
 
 // Scroll to anchor ID using scrollTO event
-const scrollToAnchor = (navLinks) => {
-  navLinks.forEach((link) => {
+const navLinks = document.querySelectorAll(".menu__link");
+
+navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
-      scrollTo(link.getAttribute("name"), e, { behavior: "smooth" });
+        e.preventDefault();
+        const linkParentElement = e.target.parentElement;
+        document
+          .getElementById(linkParentElement.dataset.link)
+          .scrollIntoView({ block: "end", behavior: "smooth" });
     });
-  });
-};
+});
 
 
 /**
@@ -79,5 +83,9 @@ const scrollToAnchor = (navLinks) => {
 // scrollToAnchor(navLinks);
 
 // Set sections as active
+
+
+
+
 
 
