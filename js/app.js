@@ -18,6 +18,7 @@
  *
  */
 
+const navBar = document.querySelector(".page__header");
 const sections = document.querySelectorAll("section");
 const navList = document.querySelector("#navbar__list");
 
@@ -79,17 +80,19 @@ const addActiveClass_callback = (observerEntries) => {
       `li[data-link='${observerEntry.target.id}']`
     );
     const section = document.getElementById(observerEntry.target.id);
+    const sectionClassList = section.classList;
+    const navItemClassList = navListItem.classList;
 
     // adding the active class to the section and navigation element classlists if the section is intersecting with the viewport
     if (observerEntry?.isIntersecting) {
-      navListItem.classList.add("active");
-      section.classList.add("active");
+      navItemClassList.add("active");
+      sectionClassList.add("active");
     } else {
       // removing the active class from other sections
       if (navListItem.classList.contains("active"))
-        navListItem.classList.remove("active");
+        navItemClassList.remove("active");
       if (section.classList.contains("active"))
-        section.classList.remove("active");
+        sectionClassList.remove("active");
     }
   });
 };
@@ -112,6 +115,23 @@ const ScrollToAnchor = () => {
   });
 };
 
+// Hide the navigation bar when user stops scrolling
+const hideNavBar = (navBar) => {
+  let isScrolling = false;
+  // checking if the user is scrolling
+  window.addEventListener("scroll", () => isScrolling = true);
+  
+  setInterval(() => {
+    // make the navbar visible if ths user is scrolling or if the user is at the top of the page
+    if (isScrolling || window.scrollY === 0) {
+      isScrolling = false;
+      navBar.style.top = "0";
+    } else {
+      navBar.style.top = "-52px";
+    }
+  }, 250);
+};
+
 /**
  * End Main Functions
  * Begin Events
@@ -126,3 +146,6 @@ ScrollToAnchor();
 
 // Set sections as active
 setObserverForSections(sections);
+
+// Hide navBar when the user stops scrolling
+hideNavBar(navBar);
