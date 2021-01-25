@@ -22,7 +22,6 @@ const navBar = document.querySelector(".page__header");
 const sections = document.querySelectorAll("section");
 const navList = document.querySelector("#navbar__list");
 const collapsibles = document.querySelectorAll(".collapsible");
-console.log(collapsibles);
 
 /**
  * End Global Variables
@@ -134,7 +133,7 @@ const hideNavBar = (navBar) => {
   }, 250);
 };
 
-// Collapsible sections - collapse when clicking the section heading tah
+// Collapsible sections - collapse when clicking the section heading tag
 const collapseSection = (collapsibles) => {
   collapsibles.forEach((collapsible) => {
     collapsible.addEventListener("click", (e) => {
@@ -163,11 +162,11 @@ buildNav(sections);
 // Scroll to section on link click
 ScrollToAnchor();
 
-// Set sections as active
+// Set sections and corresponding nav item as active
 setObserverForSections(sections);
 
 // Hide navBar when the user stops scrolling
 hideNavBar(navBar);
 
-// collapse sections on clicking their headings 
+// collapse sections on clicking their headings
 collapseSection(collapsibles);
