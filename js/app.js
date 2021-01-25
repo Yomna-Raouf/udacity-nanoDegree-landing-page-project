@@ -22,12 +22,15 @@ const navBar = document.querySelector(".page__header");
 const sections = document.querySelectorAll("section");
 const navList = document.querySelector("#navbar__list");
 const collapsibles = document.querySelectorAll(".collapsible");
+const navToggle = document.querySelector(".nav-toggle");
 
 /**
  * End Global Variables
  * Start Helper Functions
  *
  */
+
+
 
 // Intersection Observer API
 const setObserverForSections = (sections) => {
@@ -111,7 +114,7 @@ const ScrollToAnchor = () => {
       // Smoothly scrolling to the section associated with the clicked navigation item
       document
         .getElementById(linkParentElement.dataset.link)
-        .scrollIntoView({ block: "end", behavior: "smooth" });
+        .scrollIntoView({ block: "center", behavior: "smooth" });
     });
   });
 };
@@ -127,8 +130,11 @@ const hideNavBar = (navBar) => {
     if (isScrolling || window.scrollY === 0) {
       isScrolling = false;
       navBar.style.top = "0";
+       navToggle.style.display = "block";
     } else {
-      navBar.style.top = "-52px";
+      navBar.style.top = `${-sections.length * 52}px`;
+      navToggle.style.display = "none";
+
     }
   }, 250);
 };
@@ -150,6 +156,17 @@ const collapseSection = (collapsibles) => {
   });
 };
 
+const collapseNavBar = (navToggle) => {
+  navToggle.addEventListener("click", () => {
+    navBar.classList.toggle("nav-open");
+    document.querySelector(".navbar__menu").classList.toggle("toggled");
+  });
+};
+
+
+
+
+
 /**
  * End Main Functions
  * Begin Events
@@ -170,3 +187,8 @@ hideNavBar(navBar);
 
 // collapse sections on clicking their headings
 collapseSection(collapsibles);
+
+// collapse nav bar on small screens 
+collapseNavBar(navToggle); 
+
+

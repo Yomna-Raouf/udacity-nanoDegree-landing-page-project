@@ -73,6 +73,10 @@ section {
 
 /* Navigation Styles*/
 
+.nav-toggle {
+    display: none;
+}
+
 .navbar__menu {
     height: 50px;
 }
@@ -111,6 +115,75 @@ section {
 
 .navbar__menu .scrolled {
     transform: translate3d(0, -50px, 0);
+}
+
+@media screen and (max-width: 700px) {
+    .navbar__menu ul {
+        display: flex;
+        flex-direction: column;
+    }
+    .page__header,
+    .navbar__menu,
+    #navbar__list {
+        height: auto!important;
+    }
+    .nav-toggle {
+        display: block;
+        padding: .5em;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        position: absolute;
+        left: 1em;
+        top: 1em;
+        z-index: 1000;
+    }
+    .page__header .navbar__menu.toggled {
+        transform: translateX(0);
+        display: block;
+    }
+    .nav-open .nav-toggle {
+        position: fixed;
+    }
+    .nav-open .burger {
+        transform: rotate(.625turn);
+    }
+    .nav-open .burger::before {
+        transform: rotate(90deg) translateX(-6px);
+    }
+    .nav-open .burger::after {
+        opacity: 0;
+    }
+    .burger {
+        display: block;
+        position: relative;
+    }
+    .burger,
+    .burger::before,
+    .burger::after {
+        background: #000;
+        width: 2em;
+        height: 3px;
+        border-radius: 1em;
+        transition: transform 250ms ease-in-out;
+    }
+    .burger::before,
+    .burger::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+    .burger::before {
+        top: 6px;
+    }
+    .burger::after {
+        bottom: 6px;
+    }
+    .navbar__menu {
+        display: none;
+        transition: all 0.3s;
+    }
 }
 
 
