@@ -75,6 +75,7 @@ section {
 
 .nav-toggle {
     display: none;
+    padding: 0;
 }
 
 .navbar__menu {
